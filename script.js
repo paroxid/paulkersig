@@ -95,31 +95,41 @@
     return img;
   }
 
-  function packCells(items, skipCenterOnce) {
+  function packCells(items, skipHoles) {
     const cols = columnCount();
     const centerCol = Math.floor(cols / 2);
     const cells = [];
     let col = 0;
     let row = 0;
-    let skipped = !skipCenterOnce;
+    let skippedTop = !skipHoles;
+    let skippedName = !skipHoles;
 
-    items.forEach((item) => {
-      if (!item.filename) return;
-      if (!skipped && row === 1 && col === centerCol) {
-        cells.push({ skip: true });
-        col += 1;
-        if (col >= cols) {
-          col = 0;
-          row += 1;
-        }
-        skipped = true;
-      }
-      cells.push({ skip: false, item });
+    function advance() {
       col += 1;
       if (col >= cols) {
         col = 0;
         row += 1;
       }
+    }
+
+    function maybeSkip() {
+      while (
+        (!skippedTop && row === 0 && col === centerCol) ||
+        (!skippedName && row === 1 && col === centerCol)
+      ) {
+        const hole = row === 0 ? "top" : "name";
+        cells.push({ skip: true, hole });
+        if (hole === "top") skippedTop = true;
+        else skippedName = true;
+        advance();
+      }
+    }
+
+    items.forEach((item) => {
+      if (!item.filename) return;
+      maybeSkip();
+      cells.push({ skip: false, item });
+      advance();
     });
 
     return cells;
@@ -131,6 +141,7 @@
     if (!cell.skip) node.type = "button";
     if (cell.skip) {
       node.classList.add("is-skip");
+      if (cell.hole) node.classList.add(`is-skip-${cell.hole}`);
       return node;
     }
     if (firstBatch) {
@@ -266,9 +277,14 @@
 
     if (next === "overview") {
       requestAnimationFrame(() => {
+        syncScrollHeight();
         window.scrollTo(0, overviewScrollY);
         onScroll();
-        syncScrollHeight();
+        requestAnimationFrame(() => {
+          syncScrollHeight();
+          window.scrollTo(0, overviewScrollY);
+          onScroll();
+        });
       });
     } else {
       document.body.style.height = "";
@@ -329,7 +345,14 @@
       setView("overview");
     });
   });
-  document.querySelector("[data-back]").addEventListener("click", () => setView("overview"));
+  document.querySelector("[data-back]").addEventListener("click", (event) => {
+    event.stopPropagation();
+    setView("overview");
+  });
+  focusView.addEventListener("click", (event) => {
+    if (event.target.closest(".media, .focus-thumb, .focus-copy, .focus-back")) return;
+    setView("overview");
+  });
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       if (navOpen) closeNav();

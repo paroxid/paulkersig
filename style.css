@@ -149,7 +149,8 @@ body:not(.is-overview) .brand {
 }
 
 body:not(.is-overview) #phatscroll {
-  display: none;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .view[hidden] {
@@ -183,6 +184,13 @@ body:not(.is-overview) #phatscroll {
 .overview-item.is-skip {
   visibility: hidden;
   pointer-events: none;
+}
+
+.overview-item.is-skip-top {
+  min-height: 3.25rem;
+}
+
+.overview-item.is-skip-name {
   min-height: 32vh;
 }
 
@@ -375,12 +383,10 @@ html.has-landed .nav-opener {
 .view--focus {
   position: relative;
   z-index: 4;
-  display: grid;
-  grid-template-columns: 5.5rem minmax(0, 1fr);
-  gap: 1.5rem;
+  display: block;
   height: 100vh;
   overflow: hidden;
-  padding: 5.5rem 4vw 6rem 1.2rem;
+  padding: 5.5rem 4vw 6rem;
   animation: viewIn 0.55s var(--ease);
 }
 
@@ -394,15 +400,17 @@ html.has-landed .nav-opener {
 }
 
 .focus-thumbs {
-  position: sticky;
-  top: 5.5rem;
-  align-self: start;
+  position: fixed;
+  left: 1.2rem;
+  top: 50%;
+  z-index: 25;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.65rem;
-  max-height: calc(100vh - 8rem);
+  max-height: 70vh;
   overflow: auto;
+  transform: translateY(-50%);
   scrollbar-width: none;
 }
 
@@ -436,8 +444,9 @@ html.has-landed .nav-opener {
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
+  width: 100%;
+  height: 100%;
   min-height: 0;
-  overflow: hidden;
 }
 
 .focus-stage {
@@ -533,8 +542,11 @@ html.has-landed .nav-opener {
   }
 
   .view--focus {
-    grid-template-columns: 3.4rem minmax(0, 1fr);
-    padding: 5rem 1rem 5.5rem 0.6rem;
+    padding: 5rem 1rem 5.5rem;
+  }
+
+  .focus-thumbs {
+    left: 0.55rem;
   }
 
   .focus-thumb {
