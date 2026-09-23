@@ -7,6 +7,7 @@
   --col-gap: 6vw;
   --row-gap: 12.4vw;
   --bleed: 5vw;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 *,
@@ -24,6 +25,15 @@ body {
   font-size: 16px;
   line-height: 1.35;
   -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-dark);
+  color: var(--color-light);
+}
+
+html:not(.has-landed) body {
+  overflow: hidden;
 }
 
 body.is-overview {
@@ -55,6 +65,54 @@ video {
   max-width: 100%;
 }
 
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  background: var(--color-light);
+  transition: opacity 0.9s var(--ease), visibility 0.9s var(--ease);
+}
+
+html.has-landed .intro {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.intro__name {
+  margin: 0;
+  font-size: var(--font-size-name);
+  font-weight: 800;
+  letter-spacing: 0.012em;
+  line-height: 0.95;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.intro__name span {
+  display: block;
+  overflow: hidden;
+  clip-path: inset(0 0 100% 0);
+  animation: introLine 0.9s var(--ease) forwards;
+}
+
+.intro__name span:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+@keyframes introLine {
+  from {
+    clip-path: inset(100% 0 0 0);
+    transform: translateY(18%);
+  }
+  to {
+    clip-path: inset(0);
+    transform: translateY(0);
+  }
+}
+
 .brand {
   position: fixed;
   top: 50%;
@@ -69,6 +127,12 @@ video {
   text-transform: uppercase;
   text-align: center;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.8s var(--ease);
+}
+
+html.has-landed .brand {
+  opacity: 1;
 }
 
 body:not(.is-overview) .brand {
@@ -109,13 +173,6 @@ body:not(.is-overview) #phatscroll {
   display: flex;
   justify-content: center;
   background: none;
-  opacity: 0;
-  transition: opacity 700ms ease;
-}
-
-.overview-item.is-visible,
-html.has-landed .overview-item:not(.is-skip) {
-  opacity: 1;
 }
 
 .overview-item:nth-child(5n + 2),
@@ -135,6 +192,23 @@ html.has-landed .overview-item:not(.is-skip) {
   max-width: 92%;
   max-height: 38vh;
   object-fit: contain;
+  opacity: 0;
+  filter: blur(8px);
+  transform: scale(0.97);
+  transition:
+    opacity 0.9s var(--ease) var(--reveal, 0ms),
+    filter 0.9s var(--ease) var(--reveal, 0ms),
+    transform 0.9s var(--ease) var(--reveal, 0ms);
+}
+
+html.has-landed .overview-item.is-visible .media {
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1);
+}
+
+html.has-landed .overview-item.is-visible:hover .media {
+  transform: scale(1.03);
 }
 
 .infinite-sentinel {
@@ -149,6 +223,18 @@ html.has-landed .overview-item:not(.is-skip) {
   width: 32px;
   height: 32px;
   transform: translateX(-50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s var(--ease) 0.35s, transform 0.4s var(--ease);
+}
+
+html.has-landed .nav-opener {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.nav-opener:hover {
+  transform: translateX(-50%) scale(1.12);
 }
 
 .nav-opener__icon,
@@ -161,7 +247,7 @@ html.has-landed .overview-item:not(.is-skip) {
   height: 2px;
   background: var(--color-dark);
   border-radius: 1px;
-  transition: transform 240ms ease;
+  transition: transform 0.35s var(--ease);
 }
 
 .nav-opener__icon {
@@ -189,6 +275,14 @@ html.has-landed .overview-item:not(.is-skip) {
   place-items: center;
   padding: 6rem 8vw 4rem;
   background: var(--color-light);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s var(--ease), visibility 0.5s var(--ease);
+}
+
+.navscreen.is-open {
+  opacity: 1;
+  visibility: visible;
 }
 
 .navscreen[hidden] {
@@ -216,6 +310,25 @@ html.has-landed .overview-item:not(.is-skip) {
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: rgba(12, 12, 12, 0.28);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: color 0.35s var(--ease);
+}
+
+.navscreen.is-open .navscreen__link {
+  animation: riseIn 0.7s var(--ease) forwards;
+}
+
+.navscreen.is-open .navscreen__link:nth-child(1) {
+  animation-delay: 0.08s;
+}
+
+.navscreen.is-open .navscreen__link:nth-child(2) {
+  animation-delay: 0.16s;
+}
+
+.navscreen.is-open .navscreen__link:nth-child(3) {
+  animation-delay: 0.24s;
 }
 
 .navscreen__link.is-active,
@@ -228,6 +341,12 @@ html.has-landed .overview-item:not(.is-skip) {
   margin: 3rem auto 0;
   font-size: clamp(15px, 1.4vw, 18px);
   font-weight: 500;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.navscreen.is-open .navscreen__about {
+  animation: riseIn 0.75s var(--ease) 0.32s forwards;
 }
 
 .navscreen__about p {
@@ -239,6 +358,18 @@ html.has-landed .overview-item:not(.is-skip) {
   font-size: 12px;
   letter-spacing: 0.04em;
   color: rgba(12, 12, 12, 0.45);
+  opacity: 0;
+}
+
+.navscreen.is-open .navscreen__copy {
+  animation: riseIn 0.7s var(--ease) 0.42s forwards;
+}
+
+@keyframes riseIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .view--focus {
@@ -250,6 +381,16 @@ html.has-landed .overview-item:not(.is-skip) {
   height: 100vh;
   overflow: hidden;
   padding: 5.5rem 4vw 6rem 1.2rem;
+  animation: viewIn 0.55s var(--ease);
+}
+
+@keyframes viewIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .focus-thumbs {
@@ -272,13 +413,15 @@ html.has-landed .overview-item:not(.is-skip) {
 .focus-thumb {
   width: 52px;
   padding: 0;
-  opacity: 0.45;
+  opacity: 0.38;
   background: none;
+  transition: opacity 0.3s var(--ease), transform 0.35s var(--ease);
 }
 
 .focus-thumb.is-active,
 .focus-thumb:hover {
   opacity: 1;
+  transform: scale(1.06);
 }
 
 .focus-thumb .media {
@@ -309,6 +452,18 @@ html.has-landed .overview-item:not(.is-skip) {
   max-width: min(68vw, 980px);
   max-height: 68vh;
   object-fit: contain;
+  animation: focusMedia 0.55s var(--ease);
+}
+
+@keyframes focusMedia {
+  from {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .focus-copy {
@@ -322,6 +477,7 @@ html.has-landed .overview-item:not(.is-skip) {
   font-weight: 800;
   letter-spacing: 0.02em;
   text-transform: uppercase;
+  animation: riseIn 0.5s var(--ease) both;
 }
 
 .focus-description {
@@ -330,6 +486,7 @@ html.has-landed .overview-item:not(.is-skip) {
   font-weight: 500;
   line-height: 1.5;
   color: rgba(12, 12, 12, 0.7);
+  animation: riseIn 0.55s var(--ease) 0.06s both;
 }
 
 .focus-back {
@@ -342,10 +499,13 @@ html.has-landed .overview-item:not(.is-skip) {
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  opacity: 0.55;
+  transition: opacity 0.3s var(--ease), letter-spacing 0.35s var(--ease);
 }
 
-html:not(.has-landed) .overview-item:not(.is-skip) {
-  opacity: 0;
+.focus-back:hover {
+  opacity: 1;
+  letter-spacing: 0.16em;
 }
 
 @media (max-width: 700px) {
@@ -367,7 +527,8 @@ html:not(.has-landed) .overview-item:not(.is-skip) {
     transform: translateY(22vw);
   }
 
-  .brand {
+  .brand,
+  .intro__name {
     width: 90vw;
   }
 
@@ -394,6 +555,17 @@ html:not(.has-landed) .overview-item:not(.is-skip) {
   *,
   *::before,
   *::after {
+    animation: none !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .intro,
+  .brand,
+  .nav-opener,
+  html.has-landed .overview-item.is-visible .media {
+    opacity: 1;
+    filter: none;
+    visibility: visible;
+    clip-path: none;
   }
 }

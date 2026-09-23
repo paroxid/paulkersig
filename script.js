@@ -123,13 +123,16 @@
     return cells;
   }
 
-  function createOverviewCell(cell) {
+  function createOverviewCell(cell, index, firstBatch) {
     const node = document.createElement(cell.skip ? "div" : "button");
     node.className = "overview-item";
     if (!cell.skip) node.type = "button";
     if (cell.skip) {
       node.classList.add("is-skip");
       return node;
+    }
+    if (firstBatch) {
+      node.style.setProperty("--reveal", `${Math.min(index, 24) * 55}ms`);
     }
     node.appendChild(mediaEl(cell.item));
     node.addEventListener("click", () => openFocus(cell.item));
@@ -149,8 +152,9 @@
     if (view !== "overview" || loops >= MAX_LOOPS || !shuffledItems.length) return;
     loops += 1;
     const frag = document.createDocumentFragment();
-    packCells(shuffledItems, loops === 1).forEach((cell) => {
-      frag.appendChild(createOverviewCell(cell));
+    const firstBatch = loops === 1;
+    packCells(shuffledItems, firstBatch).forEach((cell, index) => {
+      frag.appendChild(createOverviewCell(cell, index, firstBatch));
     });
     overviewGrid.appendChild(frag);
     syncScrollHeight();
@@ -191,12 +195,20 @@
     focusStage.appendChild(mediaEl(item));
     focusTitle.textContent = item.title || "";
     focusDescription.textContent = item.description || "";
+    restartAnim(focusTitle);
+    restartAnim(focusDescription);
 
     focusThumbs.querySelectorAll(".focus-thumb").forEach((thumb, thumbIndex) => {
       thumb.classList.toggle("is-active", thumbIndex === focusIndex);
     });
     const active = focusThumbs.querySelector(".focus-thumb.is-active");
     if (active) active.scrollIntoView({ block: "nearest" });
+  }
+
+  function restartAnim(el) {
+    el.style.animation = "none";
+    void el.offsetWidth;
+    el.style.animation = "";
   }
 
   function cycleFocus(direction) {
@@ -211,6 +223,7 @@
   function openNav() {
     navOpen = true;
     navscreen.hidden = false;
+    requestAnimationFrame(() => navscreen.classList.add("is-open"));
     navOpener.classList.add("is-open");
     navOpener.setAttribute("aria-expanded", "true");
     navOpener.setAttribute("aria-label", "Close menu");
@@ -218,10 +231,13 @@
 
   function closeNav() {
     navOpen = false;
-    navscreen.hidden = true;
+    navscreen.classList.remove("is-open");
     navOpener.classList.remove("is-open");
     navOpener.setAttribute("aria-expanded", "false");
     navOpener.setAttribute("aria-label", "Open menu");
+    window.setTimeout(() => {
+      if (!navOpen) navscreen.hidden = true;
+    }, 480);
   }
 
   function toggleNav() {
@@ -329,7 +345,19 @@
   window.addEventListener("resize", syncScrollHeight);
 
   function land() {
-    requestAnimationFrame(() => document.documentElement.classList.add("has-landed"));
+    const intro = document.getElementById("intro");
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reveal = () => {
+      document.documentElement.classList.add("has-landed");
+      window.setTimeout(() => {
+        if (intro) intro.hidden = true;
+      }, reduce ? 0 : 900);
+    };
+    if (reduce) {
+      reveal();
+      return;
+    }
+    window.setTimeout(reveal, 1450);
   }
 
   function loadCsv() {
