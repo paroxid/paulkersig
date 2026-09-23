@@ -540,19 +540,33 @@ html.has-landed .nav-opener {
   }
 
   .view--focus {
-    padding: 5rem 1rem 5.5rem;
+    padding: 5rem 1.1rem 5.5rem 4.15rem;
   }
 
   .focus-thumbs {
-    left: 0.55rem;
+    left: 0.4rem;
   }
 
   .focus-thumb {
-    width: 40px;
+    width: 34px;
   }
 
   .focus-stage .media {
     max-width: 100%;
+    max-height: 54vh;
+  }
+
+  .focus-stage[data-span="1x1"] .media,
+  .focus-stage[data-span="2x1"] .media {
+    max-width: 100%;
+  }
+
+  .focus-stage[data-span="1x1"] .media {
+    max-height: min(48vh, calc(100vw - 5.3rem));
+  }
+
+  .focus-stage[data-span="2x1"] .media {
+    max-height: 34vh;
   }
 
   .navscreen {

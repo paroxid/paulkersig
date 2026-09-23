@@ -62,7 +62,9 @@
       category: String(row.category || "").trim(),
       title: String(row.title || "").trim(),
       description: String(row.description || "").trim(),
+      grid_span: String(row.grid_span || "1x1").trim().toLowerCase() || "1x1",
       poster: String(row.poster || "").trim(),
+      preview: String(row.preview || "").trim(),
     };
   }
 
@@ -124,7 +126,8 @@
     if (node.dataset.mediaType !== "video" || node.querySelector("video")) return;
     const video = document.createElement("video");
     video.className = "media";
-    video.src = `${ASSET_PATH}${node.dataset.filename}`;
+    const src = node.dataset.preview || node.dataset.filename;
+    video.src = `${ASSET_PATH}${src}`;
     video.muted = true;
     video.loop = true;
     video.playsInline = true;
@@ -191,6 +194,7 @@
     node.dataset.filename = cell.item.filename;
     node.dataset.mediaType = cell.item.media_type;
     node.dataset.poster = cell.item.poster || "";
+    node.dataset.preview = cell.item.preview || "";
     node.appendChild(overviewPoster(cell.item, firstBatch && index < 12));
     nearVideoObserver.observe(node);
     node.addEventListener("click", () => openFocus(cell.item));
@@ -248,6 +252,7 @@
 
     focusStage.querySelectorAll("video").forEach((video) => video.pause());
     focusStage.innerHTML = "";
+    focusStage.dataset.span = item.grid_span || "1x1";
     focusStage.appendChild(mediaEl(item));
     focusTitle.textContent = item.title || "";
     focusDescription.textContent = item.description || "";
