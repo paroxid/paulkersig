@@ -496,6 +496,16 @@ html.has-landed .nav-opener {
   animation: riseIn 0.55s var(--ease) 0.06s both;
 }
 
+.focus-description a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.focus-description a:hover {
+  opacity: 0.7;
+}
+
 .focus-back {
   position: fixed;
   left: 50%;

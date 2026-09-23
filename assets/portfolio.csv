@@ -1,38 +1,54 @@
 filename,media_type,category,title,description,grid_span,poster,preview
-2D-01.jpg,image,print,fundi print 01,Lorem Ipsum,1x1,,
-2D-02.jpg,image,print,fundi print 02,Lorem Ipsum,2x1,,
-2D-03.jpg,image,print,fundi print 03,Lorem Ipsum,1x1,,
-2D-04.jpg,image,print,fundi print 04,Lorem Ipsum,1x1,,
-2D-05.jpg,image,title,Legacy,Lorem Ipsum,2x1,,
-2D-06.jpg,image,title,Bad For Me,Lorem Ipsum,2x1,,
-2D-07.jpg,image,title,Pumpgun,Lorem Ipsum,2x1,,
-2D-08.jpg,image,title,Tell me bout,Lorem Ipsum,1x1,,
-2D-09.jpg,image,title,Go For You,Lorem Ipsum,1x1,,
-2D-10.jpg,image,title,Wavy,Lorem Ipsum,2x1,,
-2D-11.jpg,image,print,can we talk?,Lorem Ipsum,1x1,,
-2D-12.jpg,image,print,a little walk,Lorem Ipsum,1x1,,
-2D-13.jpg,image,print,volume or value,Lorem Ipsum,1x1,,
-2D-14.jpg,image,print,ete print 2022,Lorem Ipsum,1x1,,
-2D-15.jpg,image,print,flumo print 2023,Lorem Ipsum,1x1,,
-2D-16.jpg,image,print,Rosbeh,Lorem Ipsum,1x1,,
-2D-17.jpg,image,print,ete print 2025,Lorem Ipsum,1x1,,
-2D-18.jpg,image,print,funktion_01,Lorem Ipsum,1x1,,
-2D-19.jpg,image,print,funktion_02,Lorem Ipsum,1x1,,
-2D-20.jpg,image,print,funktion_03,Lorem Ipsum,1x1,,
-3D-Fundi-01.mp4,video,3D Scan,fundi_01,Lorem Ipsum,1x2,3D-Fundi-01.mp4.jpg,3D-Fundi-01.preview.mp4
-3D-Fundi-02.mp4,video,3D Scan,fundi_02,Lorem Ipsum,1x2,3D-Fundi-02.mp4.jpg,3D-Fundi-02.preview.mp4
-3D-Fundi-03.mp4,video,3D Scan,fundi_03,Lorem Ipsum,1x2,3D-Fundi-03.mp4.jpg,3D-Fundi-03.preview.mp4
-3D-Fundi-04.mp4,video,3D Scan,fundi_04,Lorem Ipsum,1x2,3D-Fundi-04.mp4.jpg,3D-Fundi-04.preview.mp4
-3D-Fundi-05.mp4,video,3D Scan,fundi_05,Lorem Ipsum,1x2,3D-Fundi-05.mp4.jpg,3D-Fundi-05.preview.mp4
-3D-KK-01.mp4,video,3D Abstract,Kinokabaret 2025,Lorem Ipsum,1x1,3D-KK-01.mp4.jpg,3D-KK-01.preview.mp4
-3D-KK-02.mp4,video,3D,Kinokabaret 2026,Lorem Ipsum,1x1,3D-KK-02.mp4.jpg,3D-KK-02.preview.mp4
-3D-Nordevent-01.mp4,video,3D,Brides and Grooms,Lorem Ipsum,1x1,3D-Nordevent-01.mp4.jpg,3D-Nordevent-01.preview.mp4
-3D-Nordevent-02.mp4,video,3D,Wellenklang x Gin Sul,Lorem Ipsum,1x1,3D-Nordevent-02.mp4.jpg,3D-Nordevent-02.preview.mp4
-3D-Ver-01.mp4,video,3D,Ver_01,Lorem Ipsum,1x2,3D-Ver-01.mp4.jpg,3D-Ver-01.preview.mp4
-3D-Ver-02.mp4,video,3D Abstract,Ver_02,Lorem Ipsum,1x1,3D-Ver-02.mp4.jpg,3D-Ver-02.preview.mp4
-3D-Ver-03.mp4,video,3D Abstract,Ver_03,Lorem Ipsum,1x2,3D-Ver-03.mp4.jpg,3D-Ver-03.preview.mp4
-3D-Ver-04.mp4,video,3D Abstract,Ver_04,Lorem Ipsum,1x2,3D-Ver-04.mp4.jpg,3D-Ver-04.preview.mp4
-3D-Ver-05.mp4,video,3D,Ver_05,Lorem Ipsum,1x1,3D-Ver-05.mp4.jpg,3D-Ver-05.preview.mp4
-3D-Ver-06.mp4,video,3D Abstract,Ver_06,Lorem Ipsum,1x2,3D-Ver-06.mp4.jpg,3D-Ver-06.preview.mp4
-3D-Ver-07.mp4,video,3D Abstract,Ver_07,Lorem Ipsum,1x2,3D-Ver-07.mp4.jpg,3D-Ver-07.preview.mp4
-3D-Ver-08.mp4,video,3D,Ver_08,Lorem Ipsum,1x2,3D-Ver-08.mp4.jpg,3D-Ver-08.preview.mp4
+2D-Fundi-02.jpg,image,,fundbureau,"ive been doing 3D Work, motion design, print design, photography and a bit of woordworking for the fundbureau in last couple of years. check out <a href=""https://www.instagram.com/fundbureau_hh/"">their instagram page</a> to see more of my work.",1x2,,
+2D-01.jpg,image,,fundbureau,"ive been doing 3D Work, motion design, print design, photography and a bit of woordworking for the fundbureau in last couple of years. check out <a href=""https://www.instagram.com/fundbureau_hh/"">their instagram page</a> to see more of my work.",1x1,,
+2D-02.jpg,image,,fundbureau,"ive been doing 3D Work, motion design, print design, photography and a bit of woordworking for the fundbureau in last couple of years. check out <a href=""https://www.instagram.com/fundbureau_hh/"">their instagram page</a> to see more of my work.",2x1,,
+3D-Fundi-03.mp4,video,,fundbureau,"ive been doing 3D Work, motion design, print design, photography and a bit of woordworking for the fundbureau in last couple of years. check out <a href=""https://www.instagram.com/fundbureau_hh/"">their instagram page</a> to see more of my work.",1x2,3D-Fundi-03.mp4.jpg,3D-Fundi-03.preview.mp4
+2D-03.jpg,image,,fundbureau,"ive been doing 3D Work, motion design, print design, photography and a bit of woordworking for the fundbureau in last couple of years. check out <a href=""https://www.instagram.com/fundbureau_hh/"">their instagram page</a> to see more of my work.",1x1,,
+3D-Fundi-02.mp4,video,,fundbureau,"ive been doing 3D Work, motion design, print design, photography and a bit of woordworking for the fundbureau in last couple of years. check out <a href=""https://www.instagram.com/fundbureau_hh/"">their instagram page</a> to see more of my work.",1x2,3D-Fundi-02.mp4.jpg,3D-Fundi-02.preview.mp4
+2D-04.jpg,image,,fundbureau,"ive been doing 3D Work, motion design, print design, photography and a bit of woordworking for the fundbureau in last couple of years. check out <a href=""https://www.instagram.com/fundbureau_hh/"">their instagram page</a> to see more of my work.",1x1,,
+3D-Fundi-04.mp4,video,,fundbureau,"ive been doing 3D Work, motion design, print design, photography and a bit of woordworking for the fundbureau in last couple of years. check out <a href=""https://www.instagram.com/fundbureau_hh/"">their instagram page</a> to see more of my work.",1x2,3D-Fundi-04.mp4.jpg,3D-Fundi-04.preview.mp4
+3D-Fundi-05.mp4,video,,fundbureau,"ive been doing 3D Work, motion design, print design, photography and a bit of woordworking for the fundbureau in last couple of years. check out <a href=""https://www.instagram.com/fundbureau_hh/"">their instagram page</a> to see more of my work.",1x2,3D-Fundi-05.mp4.jpg,3D-Fundi-05.preview.mp4
+3D-Fundi-01.mp4,video,,fundbureau,"ive been doing 3D Work, motion design, print design, photography and a bit of woordworking for the fundbureau in last couple of years. check out <a href=""https://www.instagram.com/fundbureau_hh/"">their instagram page</a> to see more of my work.",1x2,3D-Fundi-01.mp4.jpg,3D-Fundi-01.preview.mp4
+2D-Fundi-01.jpg,image,,fundbureau,"ive been doing 3D Work, motion design, print design, photography and a bit of woordworking for the fundbureau in last couple of years. check out <a href=""https://www.instagram.com/fundbureau_hh/"">their instagram page</a> to see more of my work.",2x1,,
+3D-Nordevent-01.mp4,video,,Brides and Grooms,3D work for this years Brides and Grooms Wedding Convention in Hamburg.,1x1,3D-Nordevent-01.mp4.jpg,3D-Nordevent-01.preview.mp4
+3D-Nordevent-02.mp4,video,,Wellenklang x Gin Sul,3D work for a boat party on the elbe in collaboration with Gin Sul.,1x1,3D-Nordevent-02.mp4.jpg,3D-Nordevent-02.preview.mp4
+2D-05.jpg,image,,Arab305,"Typography work for Arab305's Track Legacy.<br>Watch the music video <a href=""https://www.youtube.com/watch?v=Sose_b5zp6g"">here</a>.",2x1,,
+2D-06.jpg,image,,Arab305,"Typography work for Arab305's Track Bad for me.<br>Watch the music video <a href=""https://www.youtube.com/watch?v=dnqDjHSunE8"">here</a>.",2x1,,
+2D-07.jpg,image,,Arab305,"Typography work for Arab305's Track Pumpgun.<br>Watch the music video <a href=""https://www.youtube.com/watch?v=uD1wLYfEP8E"">here</a>.",2x1,,
+2D-08.jpg,image,,Arab305,"Typography work for Arab305's Track Tell me bout.<br>Watch the music video <a href=""https://www.youtube.com/watch?v=WiW9z6wk2nQ"">here</a>.",1x1,,
+2D-09.jpg,image,,Arab305,"Typography work for Arab305's Track Go for you.<br>Watch the music video <a href=""https://www.youtube.com/watch?v=SXupnxjvm94"">here</a>.",1x1,,
+2D-10.jpg,image,,Arab305,"Typography work for Arab305's Track Wavy.<br>Watch the music video <a href=""https://www.youtube.com/watch?v=--18BVGoOrQ"">here</a>.",2x1,,
+2D-11.jpg,image,,poster ideas,"its been a while scince i made these, but i still love them.",1x1,,
+2D-12.jpg,image,,poster ideas,"its been a while scince i made these, but i still love them.",1x1,,
+2D-13.jpg,image,,poster ideas,"its been a while scince i made these, but i still love them.",1x1,,
+2D-14.jpg,image,,Ete Kollektiv,"its been a while scince i made these, but i still love them.",1x1,,
+2D-15.jpg,image,,Flugmodus Festival Print,"its been a while scince i made these, but i still love them.",1x1,,
+2D-16.jpg,image,,Rosbeh Print,"its been a while scince i made these, but i still love them.",1x1,,
+2D-17.jpg,image,,Ete Kollektiv,"its been a while scince i made these, but i still love them.",1x1,,
+2D-18.jpg,image,,Long Nights,"its been a while scince i made these, but i still love them.",1x1,,
+2D-19.jpg,image,,Long Nights,"its been a while scince i made these, but i still love them.",1x1,,
+2D-20.jpg,image,,Long Nights,"its been a while scince i made these, but i still love them.",1x1,,
+3D-Ver-03.mp4,video,,Ver,"Latest abstract concept for Ver's Event Flyers.<br>check out more of my work on <a href=""https://www.instagram.com/ver.germany/"">their instagram</a>.",1x2,3D-Ver-03.mp4.jpg,3D-Ver-03.preview.mp4
+3D-Ver-04.mp4,video,,Ver,"Latest abstract concept for Ver's Event Flyers.<br>check out more of my work on <a href=""https://www.instagram.com/ver.germany/"">their instagram</a>.",1x2,3D-Ver-04.mp4.jpg,3D-Ver-04.preview.mp4
+3D-Ver-01.mp4,video,,Ver,"Latest abstract concept for Ver's Event Flyers.<br>check out more of my work on <a href=""https://www.instagram.com/ver.germany/"">their instagram</a>.",1x2,3D-Ver-01.mp4.jpg,3D-Ver-01.preview.mp4
+3D-Ver-06.mp4,video,,Ver,"Latest abstract concept for Ver's Event Flyers.<br>check out more of my work on <a href=""https://www.instagram.com/ver.germany/"">their instagram</a>.",1x2,3D-Ver-06.mp4.jpg,3D-Ver-06.preview.mp4
+3D-Ver-02.mp4,video,,Ver,"Latest abstract concept for Ver's Event Flyers.<br>check out more of my work on <a href=""https://www.instagram.com/ver.germany/"">their instagram</a>.",1x1,3D-Ver-02.mp4.jpg,3D-Ver-02.preview.mp4
+3D-Ver-07.mp4,video,,Ver,"Latest abstract concept for Ver's Event Flyers.<br>check out more of my work on <a href=""https://www.instagram.com/ver.germany/"">their instagram</a>.",1x2,3D-Ver-07.mp4.jpg,3D-Ver-07.preview.mp4
+3D-Ver-05.mp4,video,,Ver,"Older Concept for Ver's Event Flyers.<br>check out more of my work on <a href=""https://www.instagram.com/ver.germany/"">their instagram</a>.",1x1,3D-Ver-05.mp4.jpg,3D-Ver-05.preview.mp4
+3D-Ver-08.mp4,video,,Ver,"Older Concept for Ver's Event Flyers.<br>check out more of my work on <a href=""https://www.instagram.com/ver.germany/"">their instagram</a>.",1x2,3D-Ver-08.mp4.jpg,3D-Ver-08.preview.mp4
+2D-Speti-01.mp4,video,,Speti Branding,Did the logo and some prints for the Speti at the Mahagoni Festival 2026.,2x1,2D-Speti-01.mp4.jpg,2D-Speti-01.preview.mp4
+2D-Speti-02.JPG,image,,Speti Branding,Did the logo and some prints for the Speti at the Mahagoni Festival 2026.,1x2,,
+Other-Ete-01.JPG,image,,Ete Kollektiv,"we started this collective almost 10 years ago.<br>we mostly build stuff.<br><a href=""https://www.instagram.com/ete.kollektiv/"">pretty cool stuff, if you ask me.</a>",2x1,,
+Other-Ete-02.JPG,image,,Ete Kollektiv,"we started this collective almost 10 years ago.<br>we mostly build stuff.<br><a href=""https://www.instagram.com/ete.kollektiv/"">pretty cool stuff, if you ask me.</a>",2x1,,
+Other-Ete-03.JPG,image,,Ete Kollektiv,"we started this collective almost 10 years ago.<br>we mostly build stuff.<br><a href=""https://www.instagram.com/ete.kollektiv/"">pretty cool stuff, if you ask me.</a>",2x1,,
+Other-Ete-04.JPG,image,,Ete Kollektiv,"we started this collective almost 10 years ago.<br>we mostly build stuff.<br><a href=""https://www.instagram.com/ete.kollektiv/"">pretty cool stuff, if you ask me.</a>",2x1,,
+Other-Ete-05.JPG,image,,Ete Kollektiv,"we started this collective almost 10 years ago.<br>we mostly build stuff.<br><a href=""https://www.instagram.com/ete.kollektiv/"">pretty cool stuff, if you ask me.</a>",2x1,,
+Other-Ete-06.JPG,image,,Ete Kollektiv,"we started this collective almost 10 years ago.<br>we mostly build stuff.<br><a href=""https://www.instagram.com/ete.kollektiv/"">pretty cool stuff, if you ask me.</a>",2x1,,
+3D-KK-01.mp4,video,,Kinokabaret 2025,"I was chosen to design this year and last years official Kinokabaret Hamburg Poster.<br>You can find out more about the project <a href=""https://kinokabaret.com/"">here</a>.",1x1,3D-KK-01.mp4.jpg,3D-KK-01.preview.mp4
+3D-KK-02.mp4,video,,Kinokabaret 2026,"I was chosen to design this year and last years official Kinokabaret Hamburg Poster.<br>You can find out more about the project <a href=""https://kinokabaret.com/"">here</a>.",1x1,3D-KK-02.mp4.jpg,3D-KK-02.preview.mp4
+Other-Rings-03.mp4,video,,Rings,a year ago i tipped my toes into goldsmithing.<br>these were the first results i was truly happy with.,1x1,Other-Rings-03.mp4.jpg,Other-Rings-03.preview.mp4
+Other-Rings-01.JPG,image,,Rings,a year ago i tipped my toes into goldsmithing.<br>these were the first results i was truly happy with.,2x1,,
+Other-Rings-04.mp4,video,,Rings,a year ago i tipped my toes into goldsmithing.<br>these were the first results i was truly happy with.,2x1,Other-Rings-04.mp4.jpg,Other-Rings-04.preview.mp4
+Me-01.JPG,image,,me,playing some minigolf,2x1,,
+Me-02.jpg,image,,me,at a friends birthday party,2x1,,
+Me-03.JPG,image,,me,at night,2x1,,

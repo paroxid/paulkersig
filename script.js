@@ -255,7 +255,7 @@
     focusStage.dataset.span = item.grid_span || "1x1";
     focusStage.appendChild(mediaEl(item));
     focusTitle.textContent = item.title || "";
-    focusDescription.textContent = item.description || "";
+    setRichText(focusDescription, item.description);
     restartAnim(focusTitle);
     restartAnim(focusDescription);
 
@@ -264,6 +264,46 @@
     });
     const active = focusThumbs.querySelector(".focus-thumb.is-active");
     if (active) active.scrollIntoView({ block: "nearest" });
+  }
+
+  function sanitizeRich(source) {
+    const frag = document.createDocumentFragment();
+    [...source.childNodes].forEach((child) => {
+      if (child.nodeType === Node.TEXT_NODE) {
+        frag.appendChild(document.createTextNode(child.textContent));
+        return;
+      }
+      if (child.nodeType !== Node.ELEMENT_NODE) return;
+      const tag = child.tagName.toLowerCase();
+      if (tag === "br") {
+        frag.appendChild(document.createElement("br"));
+        return;
+      }
+      if (tag === "a") {
+        const href = (child.getAttribute("href") || "").trim();
+        if (!/^(https?:|mailto:)/i.test(href)) {
+          frag.appendChild(sanitizeRich(child));
+          return;
+        }
+        const link = document.createElement("a");
+        link.href = href;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.appendChild(sanitizeRich(child));
+        frag.appendChild(link);
+        return;
+      }
+      frag.appendChild(sanitizeRich(child));
+    });
+    return frag;
+  }
+
+  function setRichText(el, raw) {
+    el.replaceChildren();
+    const html = String(raw || "").replace(/\r\n|\r|\n/g, "<br>");
+    const wrap = document.createElement("template");
+    wrap.innerHTML = html;
+    el.appendChild(sanitizeRich(wrap.content));
   }
 
   function restartAnim(el) {
