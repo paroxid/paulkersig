@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paul Kersig</title>
+    <meta name="description" content="Portfolio of Paul Kersig" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <p id="brand" class="brand">Paul<br />Kersig</p>
+
+    <div id="phatscroll">
+      <div id="overview" class="view view--overview">
+        <div id="overview-grid" class="overview-grid"></div>
+        <div id="infinite-sentinel" class="infinite-sentinel" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <div id="focus" class="view view--focus" hidden>
+      <div id="focus-thumbs" class="focus-thumbs" aria-label="Project thumbnails"></div>
+      <div class="focus-main">
+        <div id="focus-stage" class="focus-stage"></div>
+        <div class="focus-copy">
+          <h2 id="focus-title" class="focus-title"></h2>
+          <p id="focus-description" class="focus-description"></p>
+        </div>
+      </div>
+      <button type="button" class="focus-back" data-back>Back</button>
+    </div>
+
+    <button type="button" class="nav-opener" id="nav-opener" aria-label="Open menu" aria-expanded="false">
+      <span class="nav-opener__icon" aria-hidden="true"></span>
+    </button>
+
+    <div class="navscreen" id="navscreen" hidden>
+      <div class="navscreen__inner">
+        <nav class="navscreen__top">
+          <button type="button" class="navscreen__link is-active" data-view="overview">Overview</button>
+          <button type="button" class="navscreen__link" data-view="focus">Work</button>
+          <a class="navscreen__link" href="mailto:hello@example.com">Contact Me</a>
+        </nav>
+        <div class="navscreen__bottom">
+          <div class="navscreen__about">
+            <p>Welcome.</p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.
+              Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at
+              nibh elementum imperdiet.
+            </p>
+            <p>Explore my work.</p>
+          </div>
+          <p class="navscreen__copy">© Copyright 2026 — all rights reserved</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
