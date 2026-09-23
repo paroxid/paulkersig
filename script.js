@@ -82,6 +82,7 @@
       video.setAttribute("muted", "");
       video.setAttribute("playsinline", "");
       if (item.poster) video.poster = `${ASSET_PATH}${item.poster}`;
+      video.addEventListener("loadedmetadata", fillIfNeeded, { once: true });
       videoObserver.observe(video);
       return video;
     }
@@ -89,7 +90,8 @@
     img.className = className || "media";
     img.src = `${ASSET_PATH}${isVideo && item.poster ? item.poster : item.filename}`;
     img.alt = item.title || "Portfolio image";
-    img.loading = "lazy";
+    img.loading = asThumb ? "lazy" : "eager";
+    if (!asThumb) img.addEventListener("load", fillIfNeeded, { once: true });
     return img;
   }
 
@@ -148,6 +150,13 @@
     document.body.style.height = `${phatscroll.scrollHeight}px`;
   }
 
+  function fillIfNeeded() {
+    if (view !== "overview") return;
+    syncScrollHeight();
+    const rect = sentinel.getBoundingClientRect();
+    if (rect.top < window.innerHeight + 900) appendOverview();
+  }
+
   function appendOverview() {
     if (view !== "overview" || loops >= MAX_LOOPS || !shuffledItems.length) return;
     loops += 1;
@@ -158,10 +167,9 @@
     });
     overviewGrid.appendChild(frag);
     syncScrollHeight();
-    requestAnimationFrame(() => {
-      const rect = sentinel.getBoundingClientRect();
-      if (rect.top < window.innerHeight + 900) appendOverview();
-    });
+    infiniteObserver.unobserve(sentinel);
+    infiniteObserver.observe(sentinel);
+    requestAnimationFrame(fillIfNeeded);
   }
 
   function renderOverview() {
@@ -308,6 +316,7 @@
   function onScroll() {
     if (view !== "overview") return;
     phatscroll.style.transform = `translate3d(0, ${-window.scrollY}px, 0)`;
+    fillIfNeeded();
   }
 
   navOpener.addEventListener("click", toggleNav);
@@ -372,6 +381,9 @@
         document.body.classList.add("is-overview");
         renderOverview();
         infiniteObserver.observe(sentinel);
+        new ResizeObserver(() => {
+          if (view === "overview") fillIfNeeded();
+        }).observe(overviewGrid);
         land();
       },
     });
