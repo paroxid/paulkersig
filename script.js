@@ -1,9 +1,9 @@
 (() => {
   const CSV_PATH = "assets/portfolio.csv";
   const ASSET_PATH = "assets/";
-  const MAX_LOOPS = 8;
+  const MAX_LOOPS_DESKTOP = 6;
+  const MAX_LOOPS_MOBILE = 3;
 
-  const phatscroll = document.getElementById("phatscroll");
   const overviewGrid = document.getElementById("overview-grid");
   const sentinel = document.getElementById("infinite-sentinel");
   const focusView = document.getElementById("focus");
@@ -25,15 +25,25 @@
   let wheelAcc = 0;
   let cycleLock = false;
 
-  const videoObserver = new IntersectionObserver(
+  const nearVideoObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        const video = entry.target;
-        if (entry.isIntersecting) video.play().catch(() => {});
-        else video.pause();
+        const node = entry.target;
+        const near =
+          entry.isIntersecting &&
+          entry.intersectionRect.height > 1 &&
+          entry.boundingClientRect.height > 8;
+        if (!near) {
+          const video = node.querySelector("video");
+          if (video) video.pause();
+          return;
+        }
+        upgradeOverviewVideo(node);
+        const video = node.querySelector("video");
+        if (video) video.play().catch(() => {});
       });
     },
-    { rootMargin: "160px 0px" }
+    { rootMargin: "200px 0px", threshold: [0, 0.01, 0.1] }
   );
 
   const infiniteObserver = new IntersectionObserver(
@@ -69,6 +79,12 @@
     return window.matchMedia("(max-width: 700px)").matches ? 3 : 5;
   }
 
+  function maxLoops() {
+    return window.matchMedia("(max-width: 700px)").matches
+      ? MAX_LOOPS_MOBILE
+      : MAX_LOOPS_DESKTOP;
+  }
+
   function mediaEl(item, className, asThumb = false) {
     const isVideo = item.media_type === "video";
     if (isVideo && !asThumb) {
@@ -83,7 +99,6 @@
       video.setAttribute("playsinline", "");
       if (item.poster) video.poster = `${ASSET_PATH}${item.poster}`;
       video.addEventListener("loadedmetadata", fillIfNeeded, { once: true });
-      videoObserver.observe(video);
       return video;
     }
     const img = document.createElement("img");
@@ -93,6 +108,32 @@
     img.loading = asThumb ? "lazy" : "eager";
     if (!asThumb) img.addEventListener("load", fillIfNeeded, { once: true });
     return img;
+  }
+
+  function overviewPoster(item, eager) {
+    const img = document.createElement("img");
+    img.className = "media";
+    img.src = `${ASSET_PATH}${item.media_type === "video" && item.poster ? item.poster : item.filename}`;
+    img.alt = item.title || "Portfolio image";
+    img.loading = eager ? "eager" : "lazy";
+    img.addEventListener("load", fillIfNeeded, { once: true });
+    return img;
+  }
+
+  function upgradeOverviewVideo(node) {
+    if (node.dataset.mediaType !== "video" || node.querySelector("video")) return;
+    const video = document.createElement("video");
+    video.className = "media";
+    video.src = `${ASSET_PATH}${node.dataset.filename}`;
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
+    if (node.dataset.poster) video.poster = `${ASSET_PATH}${node.dataset.poster}`;
+    const poster = node.querySelector("img.media");
+    if (poster) poster.replaceWith(video);
+    else node.insertBefore(video, node.firstChild);
   }
 
   function packCells(items, skipHoles) {
@@ -147,29 +188,24 @@
     if (firstBatch) {
       node.style.setProperty("--reveal", `${Math.min(index, 24) * 55}ms`);
     }
-    node.appendChild(mediaEl(cell.item));
+    node.dataset.filename = cell.item.filename;
+    node.dataset.mediaType = cell.item.media_type;
+    node.dataset.poster = cell.item.poster || "";
+    node.appendChild(overviewPoster(cell.item, firstBatch && index < 12));
+    nearVideoObserver.observe(node);
     node.addEventListener("click", () => openFocus(cell.item));
     requestAnimationFrame(() => node.classList.add("is-visible"));
     return node;
   }
 
-  function syncScrollHeight() {
-    if (view !== "overview") {
-      document.body.style.height = "";
-      return;
-    }
-    document.body.style.height = `${phatscroll.scrollHeight}px`;
-  }
-
   function fillIfNeeded() {
     if (view !== "overview") return;
-    syncScrollHeight();
     const rect = sentinel.getBoundingClientRect();
     if (rect.top < window.innerHeight + 900) appendOverview();
   }
 
   function appendOverview() {
-    if (view !== "overview" || loops >= MAX_LOOPS || !shuffledItems.length) return;
+    if (view !== "overview" || loops >= maxLoops() || !shuffledItems.length) return;
     loops += 1;
     const frag = document.createDocumentFragment();
     const firstBatch = loops === 1;
@@ -177,14 +213,15 @@
       frag.appendChild(createOverviewCell(cell, index, firstBatch));
     });
     overviewGrid.appendChild(frag);
-    syncScrollHeight();
     infiniteObserver.unobserve(sentinel);
     infiniteObserver.observe(sentinel);
     requestAnimationFrame(fillIfNeeded);
   }
 
   function renderOverview() {
-    overviewGrid.querySelectorAll("video").forEach((video) => videoObserver.unobserve(video));
+    overviewGrid.querySelectorAll(".overview-item").forEach((node) => {
+      nearVideoObserver.unobserve(node);
+    });
     overviewGrid.innerHTML = "";
     loops = 0;
     appendOverview();
@@ -209,7 +246,7 @@
     focusIndex = ((index % length) + length) % length;
     const item = csvItems[focusIndex];
 
-    focusStage.querySelectorAll("video").forEach((video) => videoObserver.unobserve(video));
+    focusStage.querySelectorAll("video").forEach((video) => video.pause());
     focusStage.innerHTML = "";
     focusStage.appendChild(mediaEl(item));
     focusTitle.textContent = item.title || "";
@@ -277,17 +314,10 @@
 
     if (next === "overview") {
       requestAnimationFrame(() => {
-        syncScrollHeight();
         window.scrollTo(0, overviewScrollY);
-        onScroll();
-        requestAnimationFrame(() => {
-          syncScrollHeight();
-          window.scrollTo(0, overviewScrollY);
-          onScroll();
-        });
+        requestAnimationFrame(() => window.scrollTo(0, overviewScrollY));
       });
     } else {
-      document.body.style.height = "";
       window.scrollTo(0, 0);
     }
 
@@ -329,12 +359,6 @@
     cycleFocus(dy < 0 ? 1 : -1);
   }
 
-  function onScroll() {
-    if (view !== "overview") return;
-    phatscroll.style.transform = `translate3d(0, ${-window.scrollY}px, 0)`;
-    fillIfNeeded();
-  }
-
   navOpener.addEventListener("click", toggleNav);
   document.querySelectorAll("[data-view]").forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -373,8 +397,6 @@
   window.addEventListener("touchstart", onTouchStart, { passive: true });
   window.addEventListener("touchmove", onTouchMove, { passive: false });
   window.addEventListener("touchend", onTouchEnd, { passive: true });
-  window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", syncScrollHeight);
 
   function land() {
     const intro = document.getElementById("intro");

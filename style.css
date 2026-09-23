@@ -16,6 +16,11 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
 html,
 body {
   margin: 0;
@@ -140,17 +145,13 @@ body:not(.is-overview) .brand {
 }
 
 #phatscroll {
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: relative;
   z-index: 2;
   width: 100%;
-  will-change: transform;
 }
 
 body:not(.is-overview) #phatscroll {
-  visibility: hidden;
-  pointer-events: none;
+  display: none;
 }
 
 .view[hidden] {
@@ -201,17 +202,14 @@ body:not(.is-overview) #phatscroll {
   max-height: 38vh;
   object-fit: contain;
   opacity: 0;
-  filter: blur(8px);
   transform: scale(0.97);
   transition:
     opacity 0.9s var(--ease) var(--reveal, 0ms),
-    filter 0.9s var(--ease) var(--reveal, 0ms),
     transform 0.9s var(--ease) var(--reveal, 0ms);
 }
 
 html.has-landed .overview-item.is-visible .media {
   opacity: 1;
-  filter: blur(0);
   transform: scale(1);
 }
 
