@@ -517,6 +517,12 @@ html.has-landed .nav-opener {
   opacity: 0;
 }
 
+.navscreen__copy a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
 .navscreen.is-open .navscreen__copy {
   animation: riseIn 0.7s var(--ease) 0.42s forwards;
 }
@@ -679,6 +685,62 @@ html.has-landed .nav-opener {
 .focus-back:hover {
   opacity: 1;
   letter-spacing: 0.16em;
+}
+
+.legal-page {
+  overflow: auto;
+}
+
+.legal {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 5.5rem 1.5rem 6rem;
+  font-size: clamp(14px, 1.2vw, 16px);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.legal h1,
+.legal h2,
+.legal h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+}
+
+.legal h1 {
+  margin: 2.75rem 0 1rem;
+  font-size: clamp(22px, 3vw, 32px);
+  text-transform: uppercase;
+}
+
+.legal h2 {
+  margin: 2rem 0 0.75rem;
+  font-size: clamp(16px, 2vw, 22px);
+}
+
+.legal h3 {
+  margin: 1.4rem 0 0.5rem;
+  font-size: 1rem;
+}
+
+.legal p,
+.legal ul {
+  margin: 0 0 1em;
+}
+
+.legal ul {
+  padding-left: 1.2em;
+}
+
+.legal a {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.legal a:hover {
+  opacity: 0.7;
 }
 
 @media (max-width: 700px) {
