@@ -263,7 +263,7 @@
       thumb.classList.toggle("is-active", thumbIndex === focusIndex);
     });
     const active = focusThumbs.querySelector(".focus-thumb.is-active");
-    if (active) active.scrollIntoView({ block: "nearest" });
+    if (active) active.scrollIntoView({ block: "nearest", inline: "nearest" });
   }
 
   function sanitizeRich(source) {
